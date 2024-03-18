@@ -5,4 +5,12 @@
     <string name="password">Password</string>
     <string name="Password">Password</string>
     <string name="Login">Login</string>
+    <string name="Create_an_account">Create an account!</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="step_1">Step 1</string>
+    <string name="student">Student</string>
+    <string name="new_user">New User?</string>
+    <string name="welcome">WELCOME</string>
+    <string name="name">Name</string>
+    <string name="department">Department</string>
 </resources>
