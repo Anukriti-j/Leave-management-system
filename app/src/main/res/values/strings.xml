@@ -13,4 +13,14 @@
     <string name="welcome">WELCOME</string>
     <string name="name">Name</string>
     <string name="department">Department</string>
+    <string name="department_name">Department name</string>
+    <string-array name="department_names">
+        <item>Computer Science and Engg</item>
+        <item>Information Technology</item>
+        <item>Electrical Engg</item>
+        <item>Electronics and communication</item>
+    </string-array>
+    <string name="department_selection_description">Select a department</string>
+    <string name="department_n">Department</string>
+
 </resources>
