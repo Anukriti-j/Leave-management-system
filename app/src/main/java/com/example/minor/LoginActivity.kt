@@ -16,6 +16,8 @@ import com.example.minor.com.example.minor.Models.StudentActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.firestore
+import android.util.Log
+
 
 
 class LoginActivity : AppCompatActivity() {
@@ -34,11 +36,13 @@ class LoginActivity : AppCompatActivity() {
         Firebase.firestore.collection("User").document(userId).get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    val isStudentChecked = document.getBoolean("isStudentChecked") ?: false
-                    val isFacultyChecked = document.getBoolean("isFacultyChecked") ?: false
-                    val userType = if (isStudentChecked) {
+                    val isStudent = document.getBoolean("student") ?: false
+                    val isFaculty = document.getBoolean("faculty") ?: false
+
+//                    Log.d("UserType", "isStudent: $isStudent, isFaculty: $isFaculty")
+                    val userType = if (isStudent) {
                         "student"
-                    } else if (isFacultyChecked) {
+                    } else if (isFaculty) {
                         "faculty"
                     } else {
                         // Handle the case where neither is checked

@@ -104,12 +104,12 @@ class RegisterActivity1 : AppCompatActivity() {
                         user.isStudent= isStudentChecked
                         user.isFaculty= isFacultyChecked
 
+                        Firebase.firestore.collection("User").document(Firebase.auth.currentUser!!.uid).set(user)
+
                         Toast.makeText(this, "Successfully Registered", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this,LoginActivity::class.java))
                         finish()
 
-
-                        Firebase.firestore.collection("User").document(Firebase.auth.currentUser!!.uid).set(user)
 
 
                     }
