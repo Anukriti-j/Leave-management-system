@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor= Color.TRANSPARENT
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+//            finish()
         },2000)
 
 

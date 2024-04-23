@@ -6,4 +6,6 @@
     <color name="text_color_light">@color/black</color>
     <color name="text_color_dark">@color/white</color>
     <color name="grey">#808080</color>
+    <color name="brown">#A07E46</color>
+
 </resources>

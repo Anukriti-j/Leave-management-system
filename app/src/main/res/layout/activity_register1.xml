@@ -14,14 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
         app:boxStrokeColor="@color/blue"
         app:endIconMode="clear_text"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/faculty"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button">
+        app:layout_constraintStart_toStartOf="@id/faculty"
+        app:layout_constraintTop_toBottomOf="@+id/faculty">
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -59,7 +58,7 @@
     <!--    re-enter password-->
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/re_password"
+        android:id="@+id/repassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -93,10 +92,10 @@
         app:endIconMode="clear_text"
         app:helperText="Use College Mail-id"
         app:helperTextEnabled="true"
-        app:layout_constraintEnd_toEndOf="@+id/re_password"
+        app:layout_constraintEnd_toEndOf="@+id/repassword"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/re_password"
-        app:layout_constraintTop_toBottomOf="@+id/re_password">
+        app:layout_constraintStart_toStartOf="@+id/repassword"
+        app:layout_constraintTop_toBottomOf="@+id/repassword">
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -114,37 +113,12 @@
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/outline_spinner_bg"
         android:paddingStart="6dp"
         app:layout_constraintEnd_toEndOf="@id/email"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/email"
-        app:layout_constraintTop_toBottomOf="@id/email"
-        android:background="@drawable/outline_spinner_bg"/>
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="35dp"
-        android:backgroundTint="@color/blue"
-        android:text="@string/student"
-        android:textColorHighlight="@color/blue"
-        android:textColorLink="@color/blue"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.591"
-        app:layout_constraintStart_toStartOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="35dp"
-        android:backgroundTint="@color/blue"
-        android:text="Faculty"
-        app:layout_constraintEnd_toEndOf="@+id/name"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@id/email" />
 
     <TextView
         android:id="@+id/textView2"
@@ -156,6 +130,7 @@
         android:textColor="@color/blue"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -178,18 +153,43 @@
         android:text="Already have an account? Login here."
         app:layout_constraintEnd_toEndOf="@+id/spinner2"
         app:layout_constraintStart_toStartOf="@+id/spinner2"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/register_button" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/register_button"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/blue"
-        android:text="Next"
+        android:text="Register"
         app:layout_constraintEnd_toEndOf="@+id/spinner2"
         app:layout_constraintStart_toStartOf="@+id/spinner2"
         app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+
+    <CheckBox
+        android:id="@+id/faculty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Faculty"
+        android:textColorHighlight="@color/blue"
+        android:textColorLink="@color/blue"
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <CheckBox
+        android:id="@+id/student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Student"
+        android:textColorHighlight="@color/blue"
+        android:textColorLink="@color/blue"
+        app:layout_constraintEnd_toEndOf="@+id/name"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/faculty"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:useMaterialThemeColors="false" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,5 +22,16 @@
     </string-array>
     <string name="department_selection_description">Select a department</string>
     <string name="department_n">Department</string>
+    <string name="title_home">Home</string>
+    <string name="title_classwork">Classwork</string>
+    <string name="title_doubt">Doubt/Chat</string>
+    <string name="classroom">Classroom</string>
+    <string name="hey_anamika_welcome">Hey Anamika Welcome</string>
+    <string name="syllabus">Syllabus</string>
+    <string name="timetable">Timetable</string>
+    <string name="resources">Resources</string>
+    <string name="notes">Notes</string>
+    <string name="leave_document">Leave Document</string>
+    <string name="leave">Leave</string>
 
 </resources>
