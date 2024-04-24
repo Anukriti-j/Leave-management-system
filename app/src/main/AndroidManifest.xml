@@ -13,9 +13,11 @@
         android:theme="@style/Theme.Minor"
         tools:targetApi="31">
         <activity
+            android:name=".Models.LeaveActivity2"
+            android:exported="false" />
+        <activity
             android:name=".Models.LeaveActivity"
             android:exported="false" />
-
         <activity
             android:name=".RegisterActivity1"
             android:exported="false" />
@@ -27,8 +29,6 @@
             android:exported="true" />
         <activity android:name=".com.example.minor.Models.StudentActivity" />
         <activity android:name=".com.example.minor.Models.FacultyActivity" />
-
-
-  </application>
+    </application>
 
 </manifest>

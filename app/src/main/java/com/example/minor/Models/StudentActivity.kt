@@ -1,9 +1,13 @@
 package com.example.minor.com.example.minor.Models
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.minor.Models.LeaveActivity
+import com.example.minor.Models.LeaveActivity2
 import com.example.minor.R
 import com.google.firebase.auth.FirebaseAuth
 
@@ -17,6 +21,13 @@ class StudentActivity: AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        val leaveCardView: CardView = findViewById(R.id.cardviewleavestudent)
+        // Set OnClickListener for the leave CardView
+        leaveCardView.setOnClickListener {
+            // Define the intent to start LeaveActivity
+            val intent = Intent(this, LeaveActivity2::class.java)
+            startActivity(intent)
         }
 
 //        displaying current username in home activity

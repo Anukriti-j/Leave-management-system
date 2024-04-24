@@ -23,15 +23,15 @@ import android.util.Log
 class LoginActivity : AppCompatActivity() {
     val binding by lazy { ActivityLoginBinding.inflate(layoutInflater) }
     lateinit var auth: FirebaseAuth
-//    override fun onStart() {
-//        super.onStart()
-//        // Check if user is already logged in
-//        val currentUser: FirebaseUser? = auth.currentUser
-//        if (currentUser != null) {
-//            fetchUserTypeAndRedirect(currentUser.uid)
-//            finish()
-//        }
-//    }
+    override fun onStart() {
+        super.onStart()
+        // Check if user is already logged in
+        val currentUser: FirebaseUser? = auth.currentUser
+        if (currentUser != null) {
+            fetchUserTypeAndRedirect(currentUser.uid)
+            finish()
+        }
+    }
     private fun fetchUserTypeAndRedirect(userId: String) {
         Firebase.firestore.collection("User").document(userId).get()
             .addOnSuccessListener { document ->
