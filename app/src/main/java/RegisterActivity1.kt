@@ -21,7 +21,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.Spanned
 import android.view.View
-//import org.mindrot.jbcrypt.BCrypt
+import org.mindrot.jbcrypt.BCrypt
 
 
 class RegisterActivity1 : AppCompatActivity() {
@@ -93,17 +93,19 @@ class RegisterActivity1 : AppCompatActivity() {
                 Toast.makeText(this, "Select user checkbox", Toast.LENGTH_SHORT).show()
             }
             else{
+                val hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt())
                 auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this){task->
 
                     if(task.isSuccessful){
 
-                        user.name=binding.name.editText?.text.toString()
-                        user.password=binding.password.editText?.text.toString()
-                        user.re_password=binding.repassword.editText?.text.toString()
-                        user.email=binding.email.editText?.text.toString()
-                        user.department=binding.spinner2.selectedItem.toString()
-                        user.isStudent= isStudentChecked
-                        user.isFaculty= isFacultyChecked
+                        val user = hashMapOf(
+                            "name" to name,
+                            "email" to email,
+                            "department" to department,
+                            "password" to hashedPassword,
+                            "isFaculty" to isFacultyChecked,
+                            "isStudent" to isStudentChecked
+                        )
 
                         Firebase.firestore.collection("User").document(Firebase.auth.currentUser!!.uid).set(user)
 

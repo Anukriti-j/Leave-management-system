@@ -1,5 +1,6 @@
 package com.example.minor
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,16 +8,14 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.minor.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
-import android.content.Context
-
-
+import org.mindrot.jbcrypt.BCrypt
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.minor.com.example.minor.Models.StudentActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.firestore
-import android.util.Log
 import com.example.minor.com.example.minor.Models.FacultyActivity
+
 
 
 class LoginActivity : AppCompatActivity() {
@@ -50,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
                         // Handle the case where neither is checked
                         "default" // or any other default value
                     }
-                    redirectToUserTypeActivity(this, userType)
+                    redirectToUserTypeActivity(this,userType)
                     finish()
                 } else {
                     // Document does not exist or is null
@@ -77,17 +76,8 @@ class LoginActivity : AppCompatActivity() {
             if(email.isEmpty()||password.isEmpty()){
                 Toast.makeText(this, "Please fill all the details", Toast.LENGTH_SHORT).show()
             }
-            else{
-                auth.signInWithEmailAndPassword(email,password)
-                    .addOnCompleteListener { task->
-                        if(task.isSuccessful){
-                            Toast.makeText(this, "Login Successfully", Toast.LENGTH_SHORT).show()
-                            loginUser()
-                        }
-                        else{
-                            Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
-                        }
-                    }
+            else {
+                authenticateUser(email, password)
             }
         }
 
@@ -118,8 +108,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-
-
         val textView5= findViewById<TextView>(R.id.textView5)
         // Determine the current night mode
         val nightMode = AppCompatDelegate.getDefaultNightMode()
@@ -137,36 +125,85 @@ class LoginActivity : AppCompatActivity() {
     }
     //    fucntion to redirect to different home activity based on user type
 
-    private fun loginUser() {
-        val email = binding.Email.text.toString().trim()
-        val password = binding.Password.text.toString().trim()
-
-        if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Please fill all the details", Toast.LENGTH_SHORT).show()
-            return
-        }
-
+//    private fun loginUser() {
+//        val email = binding.Email.text.toString().trim()
+//        val password = binding.Password.text.toString().trim()
+//
+//        if (email.isEmpty() || password.isEmpty()) {
+//            Toast.makeText(this, "Please fill all the details", Toast.LENGTH_SHORT).show()
+//            return
+//        }
+//
+//        auth.signInWithEmailAndPassword(email, password)
+//            .addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                    val user = auth.currentUser
+//                    user?.let {
+//                        fetchUserTypeAndRedirect(it.uid) // Pass user UID to fetch user type
+//                    }
+//                } else {
+//                    Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//    }
+//    authenticate user
+    private fun authenticateUser(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     user?.let {
-                        fetchUserTypeAndRedirect(it.uid) // Pass user UID to fetch user type
+                        verifyPassword(email, password, it.uid)
                     }
                 } else {
                     Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
     }
+    private fun verifyPassword(email: String, password: String,userId: String) {
+            Firebase.firestore.collection("User").document(userId).get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.exists()) {
+                        val hashedPasswordFromDatabase = document.getString("password") // Retrieve hashed password from database
+                        val isPasswordMatch = BCrypt.checkpw(password, hashedPasswordFromDatabase)
+                        if (isPasswordMatch) {
+                            // Passwords match, user authenticated
+                            runOnUiThread{
+                                Toast.makeText(this, "Login Successfully", Toast.LENGTH_SHORT).show()
+                            }
 
+                            // Redirect to appropriate activity based on user type
+                          fetchUserTypeAndRedirect(userId)
+                        } else {
+                            // Passwords don't match, authentication failed
+                            runOnUiThread{
+                                Toast.makeText(this, "Incorrect password", Toast.LENGTH_SHORT).show()
+                            }
 
-    private fun redirectToUserTypeActivity(context: Context,userType: String="student") {
+                        }
+
+                    } else {
+                        // Document does not exist or is null
+                        runOnUiThread{
+                            Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    runOnUiThread{
+                        Toast.makeText(this, "Failed to retrieve user details: ${exception.message}", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+        }
+
+    private fun redirectToUserTypeActivity(context: Context,userType: String?) {
         val intent = when (userType) {
             "student" -> Intent(context, StudentActivity::class.java)
             "faculty" -> Intent(context, FacultyActivity::class.java)
             else -> Intent(context, StudentActivity::class.java) // Default activity for other user types
         }
         context.startActivity(intent)
-        finish()
     }
 }
+
