@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:title="Home"
+        android:icon="@drawable/home_icon" />
+
+    <item
+        android:id="@+id/navigation_classroom"
+        android:title="Classroom"
+        android:icon="@drawable/ic_classroom" />
+
+    <item
+        android:id="@+id/navigation_doubtsolve"
+        android:title="Doubt Solving"
+        android:icon="@drawable/ic_doubt_24" />
+
+</menu>

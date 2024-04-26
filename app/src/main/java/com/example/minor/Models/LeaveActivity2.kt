@@ -1,4 +1,4 @@
-package com.example.minor.Models
+package com.example.minor.com.example.minor.Models
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -58,8 +58,13 @@ class LeaveActivity2 : AppCompatActivity() {
             highlightSelectedDate(startDate, endDate)
 
         }
+//        submit button handling
         submitLeaveButton.setOnClickListener {
-            submitLeaveRequest(startDate!!, endDate!!)
+            if (startDate != null && endDate != null) {
+                submitLeaveRequest(startDate!!, endDate!!)
+            } else {
+                Toast.makeText(this, "Please select both start and end dates", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

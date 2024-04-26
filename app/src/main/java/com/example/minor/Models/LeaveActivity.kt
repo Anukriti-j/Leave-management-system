@@ -1,4 +1,4 @@
-package com.example.minor.Models
+package com.example.minor.com.example.minor.Models
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

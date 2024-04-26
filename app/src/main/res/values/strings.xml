@@ -47,6 +47,9 @@
     <string name="your_name">Your Name</string>
     <string name="open">Open Navigation Drawer</string>
     <string name="close"> Close Navigation Drawer</string>
+    <string name="open_drawer">opendrawer\n</string>
+    <string name="close_drawer">closedrawer\n\n</string>
+    <string name="dashboard_icon">dashboard</string>
 
 
 </resources>

@@ -11,27 +11,29 @@ import android.content.Context
 
 
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.minor.com.example.minor.Models.FacultyActivity
 import com.example.minor.com.example.minor.Models.StudentActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.firestore
 import android.util.Log
-
+import com.example.minor.com.example.minor.Models.FacultyActivity
 
 
 class LoginActivity : AppCompatActivity() {
     val binding by lazy { ActivityLoginBinding.inflate(layoutInflater) }
     lateinit var auth: FirebaseAuth
-    override fun onStart() {
-        super.onStart()
-        // Check if user is already logged in
-        val currentUser: FirebaseUser? = auth.currentUser
-        if (currentUser != null) {
-            fetchUserTypeAndRedirect(currentUser.uid)
-            finish()
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        // Check if user is already logged in
+//        val currentUser: FirebaseUser? = auth.currentUser
+//        if (currentUser != null) {
+//            fetchUserTypeAndRedirect(currentUser.uid)
+//            finish()
+//        }
+//    }
+
+
+
     private fun fetchUserTypeAndRedirect(userId: String) {
         Firebase.firestore.collection("User").document(userId).get()
             .addOnSuccessListener { document ->

@@ -21,6 +21,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.Spanned
 import android.view.View
+//import org.mindrot.jbcrypt.BCrypt
 
 
 class RegisterActivity1 : AppCompatActivity() {
