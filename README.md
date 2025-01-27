@@ -27,11 +27,11 @@ This system eliminates the need for manual paperwork, making the leave managemen
 
 ## Technologies Used
 
-- Programming Language: Kotlin
+- Programming Language: Kotlin/Java
 - Backend: Firebase (Authentication, Realtime Database, Cloud Firestore)
 - Development Environment: Android Studio
 - Version Control: Git and GitHub
-- 
+  
 ## Installation
 
 ### Prerequisites:
